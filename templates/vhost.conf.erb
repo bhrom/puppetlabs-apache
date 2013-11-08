@@ -35,6 +35,12 @@
 <% if @access_log -%>
   CustomLog <%= @access_log_destination %> <%= @_access_log_format %>
 <% end -%>
+<IfModule rpaf_module>
+  RPAFenable On
+  RPAFsethostname On
+  RPAFproxy_ips 192.168.2.1 127.0.0.1
+  RPAFheader X-Forwarded-For
+</IfModule>
 <%= scope.function_template(['apache/vhost/_block.erb']) -%>
 <%= scope.function_template(['apache/vhost/_proxy.erb']) -%>
 <%= scope.function_template(['apache/vhost/_rack.erb']) -%>

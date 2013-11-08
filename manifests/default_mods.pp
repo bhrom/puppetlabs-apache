@@ -18,6 +18,7 @@ class apache::default_mods (
     case $::osfamily {
       'debian': {
         include apache::mod::reqtimeout
+        include apache::mod::rpaf
       }
       'redhat': {
         include apache::mod::cache
